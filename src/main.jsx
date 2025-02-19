@@ -2,7 +2,7 @@ import 'modern-normalize'
 import './index.css'
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App/App';
+import App from './components/App/App';
 import './index.css';
 // 1. Імпортуємо провайдер
 import { Provider } from 'react-redux'
