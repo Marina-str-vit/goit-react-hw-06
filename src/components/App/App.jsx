@@ -3,7 +3,7 @@ import ContactList from "../ContactList/ContactLisct";
 import SearchBox from "../SearchBox/SearchBox";
 import s from "./App.module.css";
 
-export default function App() {
+ const App = () => {
   return (
     <div>
       <h1 className={s.title}>Phonebook</h1>
@@ -14,3 +14,5 @@ export default function App() {
     </div>
   );
 }
+
+export default App;

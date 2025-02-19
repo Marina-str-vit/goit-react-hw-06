@@ -17,6 +17,7 @@ const persistConfig = {
   key: 'contacts',
   version: 1,
   storage,
+  whitelist: ['contacts'],
 }
 const rootReducer = combineReducers({
   contacts: contactsReducer,

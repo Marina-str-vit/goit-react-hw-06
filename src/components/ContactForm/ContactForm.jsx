@@ -5,7 +5,7 @@ import { addContact } from "../../redux/contactSlice";
 import { useDispatch } from "react-redux";
 import { useId } from "react";
 
-export default function ContactForm() {
+const ContactForm = () => {
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -73,3 +73,5 @@ export default function ContactForm() {
     </section>
   );
 }
+
+export default ContactForm;
