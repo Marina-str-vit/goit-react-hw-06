@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import s from "./SearchBox.module.css";
 import { setFilter } from "../../redux/filterSlice";
 
@@ -16,7 +16,6 @@ export default function SearchBox() {
 			<input
 				className={s.input}
         type="text"
-        // value={filteredCont}
         onChange={filterFind}
         placeholder="Search..."
       />
