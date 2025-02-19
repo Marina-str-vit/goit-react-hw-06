@@ -1,15 +1,17 @@
 import s from "./ContactForm.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+// import { useState } from "react";
+import { addContact } from "../../redux/contactSlice";
+import { useDispatch } from "react-redux";
 import { useId } from "react";
-import { nanoid } from "nanoid";
 
-export default function ContactForm({ onAdd }) {
-  const fieldId = useId();
+export default function ContactForm() {
+  const dispatch = useDispatch();
 
   const initialValues = {
     name: '',
-    number: '',   
+    number: '',
   };
   const onlyLetters = /^[A-Za-zА-Яа-яЄєІіЇїҐґ-\s]+$/;
 
@@ -24,37 +26,42 @@ export default function ContactForm({ onAdd }) {
       .required('Required')
   });
 
-  const handleSubmit = (values, actions) => {
-    onAdd({ id: nanoid(), ...values }, {actions});
-    actions.resetForm();
-  };
+    const nameId = useId();
+    const numberId = useId();
+
+    const onSubmit = (values, options) => {
+        values.id = crypto.randomUUID();
+          dispatch(addContact(values));
+          options.resetForm();
+    };
+
 
   return (
     <section className={s.formWrapper}>
     <Formik
       initialValues={initialValues}
       validationSchema={applySchema}
-      onSubmit={handleSubmit}
-    >{() => (
+      onSubmit={onSubmit}>
+
       <Form className={s.form}>
         <div className={s.formFields}>
-          <label htmlFor={`${fieldId}-name`}>Name</label>
+          <label htmlFor={nameId}>Name</label>
           <Field
             className={s.input}
             type="text"
             name="name"
-            id={`${fieldId}-name`}
+            id={nameId}       
           />
           <ErrorMessage className={s.error} name="name" component="div" />
         </div>
 
         <div className={s.formFields}>
-          <label htmlFor={`${fieldId}-number`}>Number</label>
+          <label htmlFor={numberId}>Number</label>
           <Field
             className={s.input}
             type="tel"
             name="number"
-            id={`${fieldId}-number`}
+            id={numberId}
           />
           <ErrorMessage className={s.error} name="number" component="div" />
         </div>
@@ -62,7 +69,7 @@ export default function ContactForm({ onAdd }) {
           Add contact
         </button>
       </Form>
-    )}
+  
     </Formik>
     </section>
   );

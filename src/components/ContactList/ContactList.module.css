@@ -1,11 +1,11 @@
 .menuList {
 	display: flex;	
 	flex-wrap: wrap;	
+	gap: 10px;
 }
 
-.item {
+/* .item {
 display: flex;
 margin-bottom: 20px;
 width: calc(100% / 4);
-/* background-color: azure; */
-}
+} */

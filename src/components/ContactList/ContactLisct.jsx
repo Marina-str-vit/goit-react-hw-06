@@ -1,14 +1,25 @@
-import Contact from "../Contact/Contact";
+import { useSelector } from "react-redux";
+import { Contact } from "../Contact/Contact";
 import s from "./ContactList.module.css";
 
-export default function ContactList({ contacts, onDelete }) {
+
+
+export default function ContactList() {
+  const items = useSelector(state => state.contacts.items)
+  // console.log(items);
+  
+  const filteredCont = useSelector(state => state.contacts.filter);
+  // console.log(filteredCont);
+  
+  const filteredData = () =>
+    items.filter(item =>
+      item.name.toLowerCase().includes(filteredCont.toLowerCase())
+    );
+ 
+  
   return (
     <ul className={s.menuList}>
-      {contacts.map((contact) => (
-        <li className={s.item} key={contact.id}>
-          <Contact contacts={contact} onDelete={onDelete} />
-        </li>
-      ))}
+     <Contact className={s.item} contacts={filteredData()} />
     </ul>
   );
 }
