@@ -7,7 +7,7 @@ import s from "./ContactList.module.css";
   console.log(items);
   
   
-  const filteredCont = useSelector(state => state.filters.name);
+  const filteredCont = useSelector(state => state.filters.filters.name);
   console.log(filteredCont);
   
   
